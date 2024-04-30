@@ -30,7 +30,7 @@ text_list = ["a1","j9"]
 
 for i in my_list:
     print(str(i))
-
+    
 
     x = x + 1
     y = y + 1
