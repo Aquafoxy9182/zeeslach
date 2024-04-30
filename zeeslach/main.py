@@ -13,13 +13,18 @@ h1, h2, h3, h4, h5, h6, h7, h8, h9, h10 = [" "]*10
 i1, i2, i3, i4, i5, i6, i7, i8, i9, i10 = [" "]*10
 j1, j2, j3, j4, j5, j6, j7, j8, j9, j10 = [" "]*10
 
-abc = ["a","b","c","e","f","g","h","i","j"]
+abc = ["a","b","c","d","e","f","g","h","i","j"]
 
 player2 = bool
 
 kleineBootlocatieSavePlayer1 = []
 kleineBootlocatieSavePlayer2 = []
 kleineBootlocatieVraagTrue = True
+
+kleineBootlocatieSave1Player1 = []
+kleineBootlocatieSave2Player1 = []
+kleineBootlocatieSave3Player1 = []
+kleineBootlocatieSave4Player1 = []
 
 #=============================================================functions=================================================================#
 def board():
@@ -145,16 +150,44 @@ def kleineBootlocatieVraag():
             print("zorg dat de x waarde binne de leters past")
             continue
 
-def kleinebootPlaatser():
-    kleineBootlocatie = input("plaat kleine boot (2 vakjes naar boven: ")
+def kleinebootshipPlaatser():#intenet moet nog eens doorlezen!!!
+    global kleineBootlocatieSavePlayer1
+    for coord in kleineBootlocatieSavePlayer1:
+        row = coord[0]  # Extract the row letter
+        col = int(coord[1:])  # Extract the column number
+        # Update the corresponding cell with 'O'
+        globals()[row + str(col)] = 'O'
 
-    if kleineBootlocatie == "a1" or "a2" or "a3" or "a4":
-        print("foute cordinaten")
-
+def kleineboot():
+    
+        global kleineBootlocatieSavePlayer1, kleineBootlocatieVraagTrue
+        board()
+        kleineBootlocatieVraag()
+        kleinebootshipPlaatser()
+        kleineBootlocatieSavePlayer1 = kleineBootlocatieSave1Player1
+        kleineBootlocatieVraagTrue = True
+        board()
+        kleineBootlocatieVraag()
+        kleinebootshipPlaatser()
+        kleineBootlocatieSavePlayer1 = kleineBootlocatieSave2Player1
+        kleineBootlocatieVraagTrue = True
+        board()
+        kleineBootlocatieVraag()
+        kleinebootshipPlaatser()
+        kleineBootlocatieSavePlayer1 = kleineBootlocatieSave3Player1
+        kleineBootlocatieVraagTrue = True
+        board()
+        kleineBootlocatieVraag()
+        kleinebootshipPlaatser()
+        kleineBootlocatieSavePlayer1 = kleineBootlocatieSave4Player1
+        
+        
 #=============================================================program==================================================================#
 player_select()
 
 if player2 == False:
-    board()
-    kleineBootlocatieVraag()
-
+    kleineboot()
+    print(kleineBootlocatieSave1Player1)
+    print(kleineBootlocatieSave1Player1)
+    print(kleineBootlocatieSave1Player1)
+    print(kleineBootlocatieSave1Player1)
