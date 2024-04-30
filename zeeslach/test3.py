@@ -1,107 +1,32 @@
-import random
 
-class Ship:
-    def __init__(self, size):
-        self.size = size
-        self.positions = []
+a1, a2, a3, a4, a5, a6, a7, a8, a9, a10 = [" "]*10
+b1, b2, b3, b4, b5, b6, b7, b8, b9, b10 = [" "]*10
+c1, c2, c3, c4, c5, c6, c7, c8, c9, c10 = [" "]*10
+d1, d2, d3, d4, d5, d6, d7, d8, d9, d10 = [" "]*10
+e1, e2, e3, e4, e5, e6, e7, e8, e9, e10 = [" "]*10  
+f1, f2, f3, f4, f5, f6, f7, f8, f9, f10 = [" "]*10
+g1, g2, g3, g4, g5, g6, g7, g8, g9, g10 = [" "]*10
+h1, h2, h3, h4, h5, h6, h7, h8, h9, h10 = [" "]*10
+i1, i2, i3, i4, i5, i6, i7, i8, i9, i10 = [" "]*10
+j1, j2, j3, j4, j5, j6, j7, j8, j9, j10 = [" "]*10
 
-    def generate_positions(self, board_size, start_row, start_col, horizontal):
-        if horizontal:
-            self.positions = [(start_row, start_col + i) for i in range(self.size)]
-        else:
-            self.positions = [(start_row + i, start_col) for i in range(self.size)]
+my_list = [
+a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,
+b1, b2, b3, b4, b5, b6, b7, b8, b9, b10,
+c1, c2, c3, c4, c5, c6, c7, c8, c9, c10,
+d1, d2, d3, d4, d5, d6, d7, d8, d9, d10,
+e1, e2, e3, e4, e5, e6, e7, e8, e9, e10,
+f1, f2, f3, f4, f5, f6, f7, f8, f9, f10,
+g1, g2, g3, g4, g5, g6, g7, g8, g9, g10,
+h1, h2, h3, h4, h5, h6, h7, h8, h9, h10,
+i1, i2, i3, i4, i5, i6, i7, i8, i9, i10,
+j1, j2, j3, j4, j5, j6, j7, j8, j9, j10,
+]
 
-class Player:
-    def __init__(self, name):
-        self.name = name
-        self.board_size = 8
-        self.board = [['~' for _ in range(self.board_size)] for _ in range(self.board_size)]
-        self.ships = [Ship(5), Ship(4), Ship(3), Ship(3), Ship(2)]
+x = 0
+y = 0
 
-    def place_ships(self):
-        print(f"{self.name}, place your ships on the board.")
-        for ship in self.ships:
-            print(f"Placing ship of size {ship.size}")
-            while True:
-                try:
-                    start_row = int(input("Enter starting row (0 - {}): ".format(self.board_size - 1)))
-                    start_col = int(input("Enter starting column (0 - {}): ".format(self.board_size - 1)))
-                    horizontal = input("Place horizontally? (y/n): ").lower() == 'y'
-                    if not (0 <= start_row < self.board_size and 0 <= start_col < self.board_size):
-                        raise ValueError
-                    ship.generate_positions(self.board_size, start_row, start_col, horizontal)
-                    # Check if ship positions are valid
-                    for row, col in ship.positions:
-                        if not (0 <= row < self.board_size and 0 <= col < self.board_size):
-                            raise ValueError
-                        if self.board[row][col] != '~':
-                            raise ValueError("Position already occupied.")
-                    # Place ship on board
-                    for row, col in ship.positions:
-                        self.board[row][col] = 'S'
-                    break
-                except (ValueError, IndexError) as e:
-                    print("Invalid input. Please try again.")
+text_list = ["a1","j9"]
 
-    def display_own_board(self):
-        print(f"{self.name}'s Board:")
-        for row in self.board:
-            print(" ".join(row))
-
-    def display_opponent_board(self, opponent):
-        print("Opponent's Board:")
-        for row in opponent.board:
-            print(" ".join(row))
-
-    def valid_shot(self, row, col):
-        return 0 <= row < self.board_size and 0 <= col < self.board_size and self.board[row][col] == '~'
-
-    def fire_shot(self, row, col, opponent):
-        if opponent.board[row][col] == 'S':
-            opponent.board[row][col] = 'X'
-            for ship in opponent.ships:
-                if (row, col) in ship.positions:
-                    ship.positions.remove((row, col))
-                    if len(ship.positions) == 0:
-                        print("You sunk a ship!")
-                        opponent.ships.remove(ship)
-                        if len(opponent.ships) == 0:
-                            print("Congratulations, you win!")
-                            return True
-            print("Hit!")
-        else:
-            print("Miss!")
-            self.board[row][col] = 'O'
-        return False
-
-class ComputerPlayer(Player):
-    def __init__(self):
-        super().__init__("Computer")
-
-    def fire_shot(self, opponent):
-        row = random.randint(0, self.board_size - 1)
-        col = random.randint(0, self.board_size - 1)
-        while not self.valid_shot(row, col):
-            row = random.randint(0, self.board_size - 1)
-            col = random.randint(0, self.board_size - 1)
-        print(f"{self.name} fires at row {row}, col {col}:")
-        return super().fire_shot(row, col, opponent)
-
-def play_battleship():
-    print("Welcome to Battleship!")
-    player = Player(input("Enter your name: "))
-    player.place_ships()
-    computer = ComputerPlayer()
-
-    while True:
-        player.display_own_board()
-        player.display_opponent_board(computer)
-        row = int(input("Enter row to fire at: "))
-        col = int(input("Enter col to fire at: "))
-        if player.fire_shot(row, col, computer):
-            break
-
-        if computer.fire_shot(player):
-            break
-
-play_battleship()
+for i in my_list:
+    print(i)
