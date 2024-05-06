@@ -161,46 +161,46 @@ def kleinebootshipPlaatser():#intenet moet nog eens doorlezen!!!
         col = int(coord[1:])  # Extract the column number
         # Update the corresponding cell with 'O'
         globals()[row + str(col)] = 'O'
-
-def printi():
-    print(kleineBootlocatieSave1Player1)
-    print(kleineBootlocatieSave2Player1)
-    print(kleineBootlocatieSave3Player1)
-    print(kleineBootlocatieSave4Player1)
+    
 
 def kleineboot():
+
     global kleineBootlocatieSavePlayer1, kleineBootlocatieVraagTrue, sameList , kleineBootlocatieSave1Player1, kleineBootlocatieSave2Player1, kleineBootlocatieSave3Player1, kleineBootlocatieSave4Player1, pp
+    kleineBootlocatieSavePlayer1 = pp
     while sameList is True:
         board()
         kleineBootlocatieVraag()
         kleinebootshipPlaatser()
         kleineBootlocatieSavePlayer1 = kleineBootlocatieSave1Player1
-        pp = kleineBootlocatieSave1Player1
-        print(pp)
-        printi()
         kleineBootlocatieVraagTrue = True
         board()
         kleineBootlocatieVraag()
         kleinebootshipPlaatser()
         kleineBootlocatieSavePlayer1 = kleineBootlocatieSave2Player1
-        print(pp)
-        printi()
-        kleineBootlocatieVraagTrue = True
+        if kleineBootlocatieSave1Player1[0] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave1Player1[1] in kleineBootlocatieSave2Player1:
+            kleineBootlocatieVraagTrue = True
+        else:
+            kleineBootlocatieSave2Player1.clear()
+            continue
         board()
         kleineBootlocatieVraag()
         kleinebootshipPlaatser()
         kleineBootlocatieSavePlayer1 = kleineBootlocatieSave3Player1
-        print(pp)
-        printi()
-        kleineBootlocatieVraagTrue = True
+        if kleineBootlocatieSave2Player1[0] in kleineBootlocatieSave3Player1 or kleineBootlocatieSave2Player1[1] in kleineBootlocatieSave3Player1:
+            kleineBootlocatieVraagTrue = True
+        else:
+            kleineBootlocatieSave3Player1.clear()
+            continue
         board()
         kleineBootlocatieVraag()
         kleinebootshipPlaatser()
-        kleineBootlocatieSavePlayer1 = kleineBootlocatieSave4Player1
-        print(pp)
-        printi()
+        kleineBootlocatieSavePlayer1 = kleineBootlocatieSave4Player1    
+        if kleineBootlocatieSave3Player1[0] in kleineBootlocatieSave4Player1 or kleineBootlocatieSave3Player1[1] in kleineBootlocatieSave4Player1:
+            sameList = False  
+        else:
+            kleineBootlocatieSave4Player1.clear()
+            continue
             
-        sameList = False  
         
         
 #=============================================================program==================================================================#
