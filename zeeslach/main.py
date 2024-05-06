@@ -27,6 +27,7 @@ kleineBootlocatieSave1Player1 = []
 kleineBootlocatieSave2Player1 = []
 kleineBootlocatieSave3Player1 = []
 kleineBootlocatieSave4Player1 = []
+pp = []
 
 #=============================================================functions=================================================================#
 def board():
@@ -178,24 +179,9 @@ def kleinebootshipPlaatser():#intenet moet nog eens doorlezen!!!
         globals()[row + str(col)] = 'O'
 
 def kleineboot():
-        def sameListChecker():
-            global sameList
-
-            print(kleineBootlocatieSave2Player1)
-            if kleineBootlocatieSave2Player1[0] in kleineBootlocatieSave1Player1:
-                sameList is False
-                print("penus")
-            elif kleineBootlocatieSave2Player1[2] in kleineBootlocatieSave1Player1 or kleineBootlocatieSave2Player1[2] in kleineBootlocatieSave3Player1 or kleineBootlocatieSave2Player1[2] in kleineBootlocatieSave4Player1:
-                sameList == False
-            elif kleineBootlocatieSave3Player1[1] in kleineBootlocatieSave1Player1 or kleineBootlocatieSave3Player1[1] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave3Player1[1] in kleineBootlocatieSave4Player1:
-                sameList == False
-            elif kleineBootlocatieSave3Player1[2] in kleineBootlocatieSave1Player1 or kleineBootlocatieSave3Player1[2] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave3Player1[2] in kleineBootlocatieSave4Player1:
-                sameList == False
-            elif kleineBootlocatieSave4Player1[1] in kleineBootlocatieSave1Player1 or kleineBootlocatieSave4Player1[1] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave4Player1[1] in kleineBootlocatieSave3Player1:
-                sameList == False  
-        global kleineBootlocatieSavePlayer1, kleineBootlocatieVraagTrue, sameList
-
+        global kleineBootlocatieSave1Player1, kleineBootlocatieSave2Player1, kleineBootlocatieSave3Player1, kleineBootlocatieSave4Player1, pp, kleineBootlocatieSavePlayer1, kleineBootlocatieVraagTrue
         while sameList is True:
+            kleineBootlocatieSavePlayer1 = pp
             board()
             kleineBootlocatieVraag()
             kleinebootshipPlaatser()
@@ -205,18 +191,24 @@ def kleineboot():
             kleineBootlocatieVraag()
             kleinebootshipPlaatser()
             kleineBootlocatieSavePlayer1 = kleineBootlocatieSave2Player1
-            kleineBootlocatieVraagTrue = True
-            board()
-            kleineBootlocatieVraag()
-            kleinebootshipPlaatser()
-            kleineBootlocatieSavePlayer1 = kleineBootlocatieSave3Player1
-            kleineBootlocatieVraagTrue = True
-            board()
-            kleineBootlocatieVraag()
-            kleinebootshipPlaatser()
-            kleineBootlocatieSavePlayer1 = kleineBootlocatieSave4Player1
+            if kleineBootlocatieSave1Player1[0] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave1Player1[1] in kleineBootlocatieSave2Player1:
+                continue
+            else:
+                kleineBootlocatieVraagTrue = True
+                board()
+                kleineBootlocatieVraag()
+                kleinebootshipPlaatser()
+                kleineBootlocatieSavePlayer1 = kleineBootlocatieSave3Player1
+                if kleineBootlocatieSave1Player1[0] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave1Player1[1] in kleineBootlocatieSave2Player1:
+                    continue
+                else:
+                    kleineBootlocatieVraagTrue = True
+                    board()
+                    kleineBootlocatieVraag()
+                    kleinebootshipPlaatser()
+                    kleineBootlocatieSavePlayer1 = kleineBootlocatieSave4Player1
             
-            sameList = False  
+                sameList = False  
         
         
 #=============================================================program==================================================================#
