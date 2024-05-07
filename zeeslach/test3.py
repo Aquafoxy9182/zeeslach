@@ -27,7 +27,6 @@ kleineBootlocatieSave1Player1 = []
 kleineBootlocatieSave2Player1 = []
 kleineBootlocatieSave3Player1 = []
 kleineBootlocatieSave4Player1 = []
-pp =[]
 
 #=============================================================functions=================================================================#
 def board():
@@ -66,8 +65,8 @@ def player_select():
 def kleineBootlocatieVraag(bootcountklein):
     global abc, kleineBootlocatieVraagTrue
     while kleineBootlocatieVraagTrue is True:
-
-        print("plaats kleine boot twee vakjes dus")
+        kleineBootlocatieSavePlayer1.clear()
+        print("plaats kleine boot", bootcountklein ,"twee vakjes dus")
 
 #=============================================================eersteCord================================================================#
         kleineBootlocatie = input("geeft cord 1: ")
@@ -118,7 +117,6 @@ def kleineBootlocatieVraag(bootcountklein):
                     onlyleter2 = re.sub("[^a-zA-Z]", "", kleineBootlocatie)
                     onlyNumber2 = re.sub("[^1-2-3-5-6-7-8-9-10]", "", kleineBootlocatie)
                     if onlyleter2 in abc:
-
                         if len(onlyleter2) == 1:
                             if len(onlyNumber2) == 1 or onlyNumber2 == "10":
                                 if onlyleter1 == onlyleter2:
@@ -266,9 +264,9 @@ def start():
     kleinebootshipPlaatser()
     printi()
     kleineBootlocatieVraagTrue = True
-    board()
     kleineBootlocatieVraag(4)
     kleinebootshipPlaatser()
+    board()
     printi()
         
 #=============================================================program==================================================================#

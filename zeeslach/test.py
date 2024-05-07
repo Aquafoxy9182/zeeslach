@@ -1,52 +1,67 @@
-import random
+# Import
+import re
 
-# Functie om het bord te initialiseren
-def initialize_board(size):
-    board = []
-    for _ in range(size):
-        row = ['O'] * size
-        board.append(row)
-    return board
+# Function to initialize the board
+def initialize_board():
+    return [[" "]*10 for _ in range(10)]
 
-# Functie om het bord af te drukken
-def print_board(board):
-    for row in board:
-        print(" ".join(row))
+# Function to display the board
+def display_board(board):
+    letters = "ABCDEFGHIJ"
+    print("   1  2  3  4  5  6  7  8  9 10")
+    for i in range(10):
+        print(letters[i], end=" ")
+        for j in range(10):
+            print("|", board[i][j], end=" ")
+        print("|")
 
-# Functie om een willekeurige positie op het bord te genereren
-def generate_random_position(size):
-    return random.randint(0, size - 1), random.randint(0, size - 1)
-
-# Functie om het spel te spelen
-def play_battleship(size, num_ships):
-    board = initialize_board(size)
-
-    # Plaats de schepen
-    for _ in range(num_ships):
-        x, y = generate_random_position(size)
-        while board[x][y] == 'S':
-            x, y = generate_random_position(size)
-        board[x][y] = 'S'
-
-    # Speel het spel
+# Function to get input from the user for boat placement
+def get_boat_location(size):
+    letters = "ABCDEFGHIJ"
     while True:
-        print("Huidige bord:")
-        print_board(board)
-        guess_x = int(input("Raad een rij (0-" + str(size - 1) + "): "))
-        guess_y = int(input("Raad een kolom (0-" + str(size - 1) + "): "))
+        location = input(f"Enter location for boat (size {size}): ").upper()
+        if not re.match("^[A-J][1-9]|10$", location):
+            print("Invalid location. Please enter a location like 'A1' or 'J10'.")
+            continue
+        row, col = letters.index(location[0]), int(location[1:]) - 1
+        return row, col
 
-        if board[guess_x][guess_y] == 'S':
-            print("Gefeliciteerd! Je hebt een schip geraakt!")
-            board[guess_x][guess_y] = 'X'
-        else:
-            print("Helaas, geen schip op deze positie.")
-            board[guess_x][guess_y] = '-'
+# Function to place a boat on the board
+def place_boat(board, row, col, size):
+    for i in range(size):
+        if board[row][col+i] != " ":
+            print("Boat placement overlaps with another boat. Please try again.")
+            return False
+    for i in range(size):
+        board[row][col+i] = "O"
+    return True
 
-        if all(all(cell != 'S' for cell in row) for row in board):
-            print("Gefeliciteerd! Je hebt alle schepen gezonken!")
+# Main function to start the game
+def start_game():
+    board = initialize_board()
+    display_board(board)
+    for size in range(1, 5):
+        print(f"Placing boat of size {size}")
+        while True:
+            row, col = get_boat_location(size)
+            if place_boat(board, row, col, size):
+                break
+        display_board(board)
+
+# Main program
+def main():
+    # Player selection
+    while True:
+        num_players = input("Enter the number of players (1 or 2): ")
+        if num_players == "1":
+            start_game()
             break
+        elif num_players == "2":
+            print("Two player mode is not yet implemented.")
+            continue
+        else:
+            print("Invalid input. Please enter 1 or 2.")
 
-# Start het spel
-size = 5  # Grootte van het bord
-num_ships = 3  # Aantal schepen
-play_battleship(size, num_ships)
+if __name__ == "__main__":
+    main()
+
