@@ -17,7 +17,8 @@ abc = ["a","b","c","d","e","f","g","h","i","j"]
 
 player2 = bool
 
-sameList = True
+same = []
+bootcountklein = 0
 
 kleineBootlocatieSavePlayer1 = []
 kleineBootlocatieSavePlayer2 = []
@@ -27,6 +28,7 @@ kleineBootlocatieSave1Player1 = []
 kleineBootlocatieSave2Player1 = []
 kleineBootlocatieSave3Player1 = []
 kleineBootlocatieSave4Player1 = []
+pp =[]
 
 #=============================================================functions=================================================================#
 def board():
@@ -62,11 +64,12 @@ def player_select():
         player2 = False
 
 #=============================================================kleindeboot===============================================================#
-def kleineBootlocatieVraag():
+def kleineBootlocatieVraag(same,bootcountklein):
     global abc, kleineBootlocatieVraagTrue
     while kleineBootlocatieVraagTrue is True:
 
-        print("plaats kleine boot twee vakjes dus")
+        print("plaats kleine boot ", bootcountklein, " twee vakjes dus")
+        print(same)
 
 #=============================================================eersteCord================================================================#
         kleineBootlocatie = input("geeft cord 1: ")
@@ -118,8 +121,18 @@ def kleineBootlocatieVraag():
                                             print (kleineBootlocatieSavePlayer1)
             
                                             if  abc.index(onlyleter2) == abc.index(onlyleter1) + 1 or abc.index(onlyleter2) == abc.index(onlyleter1) - 1 or abc.index(onlyleter2) == abc.index(onlyleter1):
-                                                kleineBootlocatieVraagTrue = False
-
+                                                if same[0] in kleineBootlocatie or same[1] in kleineBootlocatie:
+                                                    kleineBootlocatieSavePlayer1.clear()
+                                                    print("zorg er voor dat je niet 2 keer de zelfde cordinaten gebruikt<3")
+                                                    continue
+                                                else:
+                                                    print(kleineBootlocatieSavePlayer1)
+                                                    print("pp")
+                                                    kleineBootlocatieVraagTrue = False
+                                            else:
+                                                kleineBootlocatieSavePlayer1.clear()
+                                                print("zorg er voor dat je niet 2 keer de zelfde cordinaten gebruikt<3")
+                                                continue
                                         else:
                                             kleineBootlocatieSavePlayer1.clear()
                                             print("zorg er voor dat je niet 2 keer de zelfde cordinaten gebruikt<3")
@@ -153,22 +166,6 @@ def kleineBootlocatieVraag():
             print("zorg dat de x waarde binne de leters past")
             continue
 
-def sameListChecker():
-    global sameList
-    global kleineBootlocatieSave1Player1, kleineBootlocatieSave2Player1, kleineBootlocatieSave3Player1, kleineBootlocatieSave4Player1
-    print(kleineBootlocatieSave2Player1)
-    if kleineBootlocatieSave2Player1[0] in kleineBootlocatieSave1Player1:
-        sameList = False
-        print("penus")
-    elif kleineBootlocatieSave2Player1[2] in kleineBootlocatieSave1Player1 or kleineBootlocatieSave2Player1[2] in kleineBootlocatieSave3Player1 or kleineBootlocatieSave2Player1[2] in kleineBootlocatieSave4Player1:
-        sameList = False
-    elif kleineBootlocatieSave3Player1[1] in kleineBootlocatieSave1Player1 or kleineBootlocatieSave3Player1[1] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave3Player1[1] in kleineBootlocatieSave4Player1:
-        sameList = False
-    elif kleineBootlocatieSave3Player1[2] in kleineBootlocatieSave1Player1 or kleineBootlocatieSave3Player1[2] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave3Player1[2] in kleineBootlocatieSave4Player1:
-        sameList = False
-    elif kleineBootlocatieSave4Player1[1] in kleineBootlocatieSave1Player1 or kleineBootlocatieSave4Player1[1] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave4Player1[1] in kleineBootlocatieSave3Player1:
-        sameList = False  
-
 def kleinebootshipPlaatser():#intenet moet nog eens doorlezen!!!
     global kleineBootlocatieSavePlayer1
     for coord in kleineBootlocatieSavePlayer1:
@@ -178,46 +175,34 @@ def kleinebootshipPlaatser():#intenet moet nog eens doorlezen!!!
         globals()[row + str(col)] = 'O'
 
 def kleineboot():
-        def sameListChecker():
-            global sameList
-
-            print(kleineBootlocatieSave2Player1)
-            if kleineBootlocatieSave2Player1[0] in kleineBootlocatieSave1Player1:
-                sameList is False
-                print("penus")
-            elif kleineBootlocatieSave2Player1[2] in kleineBootlocatieSave1Player1 or kleineBootlocatieSave2Player1[2] in kleineBootlocatieSave3Player1 or kleineBootlocatieSave2Player1[2] in kleineBootlocatieSave4Player1:
-                sameList == False
-            elif kleineBootlocatieSave3Player1[1] in kleineBootlocatieSave1Player1 or kleineBootlocatieSave3Player1[1] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave3Player1[1] in kleineBootlocatieSave4Player1:
-                sameList == False
-            elif kleineBootlocatieSave3Player1[2] in kleineBootlocatieSave1Player1 or kleineBootlocatieSave3Player1[2] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave3Player1[2] in kleineBootlocatieSave4Player1:
-                sameList == False
-            elif kleineBootlocatieSave4Player1[1] in kleineBootlocatieSave1Player1 or kleineBootlocatieSave4Player1[1] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave4Player1[1] in kleineBootlocatieSave3Player1:
-                sameList == False  
-        global kleineBootlocatieSavePlayer1, kleineBootlocatieVraagTrue, sameList
-
-        while sameList is True:
-            board()
-            kleineBootlocatieVraag()
-            kleinebootshipPlaatser()
-            kleineBootlocatieSavePlayer1 = kleineBootlocatieSave1Player1
-            kleineBootlocatieVraagTrue = True
-            board()
-            kleineBootlocatieVraag()
-            kleinebootshipPlaatser()
-            kleineBootlocatieSavePlayer1 = kleineBootlocatieSave2Player1
-            kleineBootlocatieVraagTrue = True
-            board()
-            kleineBootlocatieVraag()
-            kleinebootshipPlaatser()
-            kleineBootlocatieSavePlayer1 = kleineBootlocatieSave3Player1
-            kleineBootlocatieVraagTrue = True
-            board()
-            kleineBootlocatieVraag()
-            kleinebootshipPlaatser()
-            kleineBootlocatieSavePlayer1 = kleineBootlocatieSave4Player1
+    global kleineBootlocatieSavePlayer1, kleineBootlocatieVraagTrue, same , kleineBootlocatieSave1Player1, kleineBootlocatieSave2Player1, kleineBootlocatieSave3Player1, kleineBootlocatieSave4Player1, pp, bootcountklein
+    kleineBootlocatieSavePlayer1 = pp
+    board()
+    kleineBootlocatieVraag([],1)
+    kleinebootshipPlaatser()
+    kleineBootlocatieSavePlayer1 = kleineBootlocatieSave1Player1
+    print (kleineBootlocatieSavePlayer1)
+    kleineBootlocatieVraagTrue = True
+    board()
+    bootcountklein = bootcountklein + 1
+    kleineBootlocatieVraag(kleineBootlocatieSave1Player1,2)
+    kleinebootshipPlaatser()
+    kleineBootlocatieSavePlayer1 = kleineBootlocatieSave2Player1
+    kleineBootlocatieSave2Player1 = same
+    kleineBootlocatieVraagTrue = True
+    board()
+    bootcountklein = bootcountklein + 1
+    kleineBootlocatieVraag(same,3)
+    kleinebootshipPlaatser()
+    kleineBootlocatieSavePlayer1 = kleineBootlocatieSave3Player1
+    kleineBootlocatieSave3Player1 = same
+    kleineBootlocatieVraagTrue = True
+    board()
+    bootcountklein = bootcountklein + 1
+    kleineBootlocatieVraag(same,4)
+    kleinebootshipPlaatser()
+    kleineBootlocatieSavePlayer1 = kleineBootlocatieSave4Player1
             
-            sameList = False  
-        
         
 #=============================================================program==================================================================#
 player_select()

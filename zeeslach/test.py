@@ -1,104 +1,52 @@
-#=============================================================imports==================================================================#
-import re
+import random
 
-#=============================================================variable=================================================================#
-abc = ["a","b","c","d","e","f","g","h","i","j"]
+# Functie om het bord te initialiseren
+def initialize_board(size):
+    board = []
+    for _ in range(size):
+        row = ['O'] * size
+        board.append(row)
+    return board
 
-kleineBootlocatieSavePlayer1 = []
-kleineBootlocatieSavePlayer2 = []
-kleineBootlocatieVraagTrue = True
+# Functie om het bord af te drukken
+def print_board(board):
+    for row in board:
+        print(" ".join(row))
 
-#=============================================================functions=================================================================#
-def kleineBootlocatieVraag():
-    global abc, kleineBootlocatieVraagTrue
-    while kleineBootlocatieVraagTrue is True:
+# Functie om een willekeurige positie op het bord te genereren
+def generate_random_position(size):
+    return random.randint(0, size - 1), random.randint(0, size - 1)
 
-        print("plaats kleine boot twee vakjes dus")
+# Functie om het spel te spelen
+def play_battleship(size, num_ships):
+    board = initialize_board(size)
 
-#=============================================================eersteCord================================================================#
-        kleineBootlocatie = input("geeft cord 1: ")
-        onlyleter1 = re.sub("[^a-zA-Z]", "", kleineBootlocatie)
-        onlyNumber1 = re.sub("[^1-2-3-5-6-7-8-9-10]", "", kleineBootlocatie)
-        if onlyleter1 in abc:
+    # Plaats de schepen
+    for _ in range(num_ships):
+        x, y = generate_random_position(size)
+        while board[x][y] == 'S':
+            x, y = generate_random_position(size)
+        board[x][y] = 'S'
 
-            if len(onlyleter1) == 1:
-                if len(onlyNumber1) == 1 or onlyNumber1 == "10":
+    # Speel het spel
+    while True:
+        print("Huidige bord:")
+        print_board(board)
+        guess_x = int(input("Raad een rij (0-" + str(size - 1) + "): "))
+        guess_y = int(input("Raad een kolom (0-" + str(size - 1) + "): "))
 
-                    if kleineBootlocatie not in kleineBootlocatieSavePlayer1 and kleineBootlocatie not in kleineBootlocatieSavePlayer2:
-                        kleineBootlocatieSavePlayer1.append(kleineBootlocatie)
-                        print (kleineBootlocatieSavePlayer1)
-                    else:
-                        kleineBootlocatieSavePlayer1.clear()
-                        print("zorg er voor dat je niet 2 keer de zelfde cordinaten gebruikt<3")
-                        continue
-
-#=============================================================tweedeCord================================================================#
-                    kleineBootlocatie = input("geeft cord 2: ")
-                    onlyleter2 = re.sub("[^a-zA-Z]", "", kleineBootlocatie)
-                    onlyNumber2 = re.sub("[^1-2-3-5-6-7-8-9-10]", "", kleineBootlocatie)
-                    if onlyleter2 in abc:
-
-                        if len(onlyleter2) == 1:
-                            if len(onlyNumber2) == 1 or onlyNumber2 == "10":
-                                if onlyleter1 == onlyleter2:
-                                    if int(onlyNumber2) == int(onlyNumber1) + 1 or int(onlyNumber2) == int(onlyNumber1) - 1:
-
-                                        if kleineBootlocatie not in kleineBootlocatieSavePlayer1 and kleineBootlocatie not in kleineBootlocatieSavePlayer2:
-                                            kleineBootlocatieSavePlayer1.append(kleineBootlocatie)
-                                            print (kleineBootlocatieSavePlayer1)
-            
-                                            if  abc.index(onlyleter2) == abc.index(onlyleter1) + 1 or abc.index(onlyleter2) == abc.index(onlyleter1) - 1 or abc.index(onlyleter2) == abc.index(onlyleter1):
-                                                kleineBootlocatieVraagTrue = False
-
-                                        else:
-                                            kleineBootlocatieSavePlayer1.clear()
-                                            print("zorg er voor dat je niet 2 keer de zelfde cordinaten gebruikt<3")
-                                            continue
-                                    else:
-                                        kleineBootlocatieSavePlayer1.clear()
-                                        print("zorg er voor dat je niet 2 keer de zelfde cordinaten gebruikt<3")
-                                        continue
-                                else:
-                                    if int(onlyNumber2) == int(onlyNumber1):
-                                        if kleineBootlocatie not in kleineBootlocatieSavePlayer1 and kleineBootlocatie not in kleineBootlocatieSavePlayer2:
-                                            kleineBootlocatieSavePlayer1.append(kleineBootlocatie)
-                                            print (kleineBootlocatieSavePlayer1)
-            
-                                            if  abc.index(onlyleter2) == abc.index(onlyleter1) + 1 or abc.index(onlyleter2) == abc.index(onlyleter1) - 1 or abc.index(onlyleter2) == abc.index(onlyleter1):
-                                                kleineBootlocatieVraagTrue = False
-
-                                        else:
-                                            kleineBootlocatieSavePlayer1.clear()
-                                            print("zorg er voor dat je niet 2 keer de zelfde cordinaten gebruikt<3")
-                                            continue
-                                    else:
-                                        kleineBootlocatieSavePlayer1.clear()
-                                        print("je kan niet schuin plaatsen")
-                                        continue
-                            else:
-                                kleineBootlocatieSavePlayer1.clear()
-                                print("zorg dat de y waarde binne de nummer past")
-                                continue
-                        else:
-                            kleineBootlocatieSavePlayer1.clear()
-                            print("zorg dat je maar 1 letter hebt staan")
-                            continue
-                    else:
-                        kleineBootlocatieSavePlayer1.clear()
-                        print("zorg dat de x waarde binne de leters past")
-                        continue
-                else:
-                    kleineBootlocatieSavePlayer1.clear()
-                    print("zorg dat de y waarde binne de leters past")
-                    continue
-            else:
-                kleineBootlocatieSavePlayer1.clear()
-                print("zorg dat je maar 1 letter hebt staan")
-                continue
+        if board[guess_x][guess_y] == 'S':
+            print("Gefeliciteerd! Je hebt een schip geraakt!")
+            board[guess_x][guess_y] = 'X'
         else:
-            kleineBootlocatieSavePlayer1.clear()
-            print("zorg dat de x waarde binne de leters past")
-            continue
+            print("Helaas, geen schip op deze positie.")
+            board[guess_x][guess_y] = '-'
 
-#=============================================================program==================================================================#
-kleineBootlocatieVraag()
+        if all(all(cell != 'S' for cell in row) for row in board):
+            print("Gefeliciteerd! Je hebt alle schepen gezonken!")
+            break
+
+# Start het spel
+size = 5  # Grootte van het bord
+num_ships = 3  # Aantal schepen
+play_battleship(size, num_ships)
