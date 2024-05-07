@@ -179,7 +179,7 @@ def kleinebootshipPlaatser():#intenet moet nog eens doorlezen!!!
         globals()[row + str(col)] = 'O'
 
 def kleineboot():
-        global kleineBootlocatieSave1Player1, kleineBootlocatieSave2Player1, kleineBootlocatieSave3Player1, kleineBootlocatieSave4Player1, pp, kleineBootlocatieSavePlayer1, kleineBootlocatieVraagTrue
+        global kleineBootlocatieSave1Player1, kleineBootlocatieSave2Player1, kleineBootlocatieSave3Player1, kleineBootlocatieSave4Player1, pp, kleineBootlocatieSavePlayer1, kleineBootlocatieVraagTrue, sameList
         while sameList is True:
             kleineBootlocatieSavePlayer1 = pp
             board()
@@ -199,7 +199,7 @@ def kleineboot():
                 kleineBootlocatieVraag()
                 kleinebootshipPlaatser()
                 kleineBootlocatieSavePlayer1 = kleineBootlocatieSave3Player1
-                if kleineBootlocatieSave1Player1[0] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave1Player1[1] in kleineBootlocatieSave2Player1:
+                if kleineBootlocatieSave2Player1[0] in kleineBootlocatieSave3Player1 or kleineBootlocatieSave2Player1[1] in kleineBootlocatieSave3Player1 or kleineBootlocatieSave1Player1[0] in kleineBootlocatieSave3Player1 or kleineBootlocatieSave1Player1[1] in kleineBootlocatieSave3Player1:
                     continue
                 else:
                     kleineBootlocatieVraagTrue = True
@@ -207,8 +207,10 @@ def kleineboot():
                     kleineBootlocatieVraag()
                     kleinebootshipPlaatser()
                     kleineBootlocatieSavePlayer1 = kleineBootlocatieSave4Player1
-            
-                sameList = False  
+                    if kleineBootlocatieSave4Player1[0] in kleineBootlocatieSave3Player1 or kleineBootlocatieSave4Player1[1] in kleineBootlocatieSave3Player1 or kleineBootlocatieSave4Player1[0] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave4Player1[1] in kleineBootlocatieSave2Player1 or kleineBootlocatieSave4Player1[0] in kleineBootlocatieSave1Player1 or kleineBootlocatieSave4Player1[1] in kleineBootlocatieSave1Player1:
+                        continue
+                    else:
+                        sameList = False  
         
         
 #=============================================================program==================================================================#
