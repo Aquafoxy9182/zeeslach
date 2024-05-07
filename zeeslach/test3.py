@@ -17,8 +17,6 @@ abc = ["a","b","c","d","e","f","g","h","i","j"]
 
 player2 = bool
 
-sameList = True
-
 kleineBootlocatieSavePlayer1 = []
 kleineBootlocatieSavePlayer2 = []
 kleineBootlocatieVraagTrue = True
@@ -27,6 +25,26 @@ kleineBootlocatieSave1Player1 = []
 kleineBootlocatieSave2Player1 = []
 kleineBootlocatieSave3Player1 = []
 kleineBootlocatieSave4Player1 = []
+
+
+drieBootlocatieSavePlayer1 = []
+drieBootlocatieSavePlayer2 = []
+drieBootlocatieVraagTrue = True
+
+drieBootlocatieSave1Player1 = []
+drieBootlocatieSave2Player1 = []
+drieBootlocatieSave3Player1 = []
+drieBootlocatieSave4Player1 = []
+
+
+vierBootlocatieSavePlayer1 = []
+vierBootlocatieSavePlayer2 = []
+vierBootlocatieVraagTrue = True
+
+vierBootlocatieSave1Player1 = []
+vierBootlocatieSave2Player1 = []
+vierBootlocatieSave3Player1 = []
+vierBootlocatieSave4Player1 = []
 
 #=============================================================functions=================================================================#
 def board():
@@ -73,43 +91,34 @@ def kleineBootlocatieVraag(bootcountklein):
         onlyleter1 = re.sub("[^a-zA-Z]", "", kleineBootlocatie)
         onlyNumber1 = re.sub("[^1-2-3-5-6-7-8-9-10]", "", kleineBootlocatie)
         if onlyleter1 in abc:
-            print("only letter1 in  abc work")
             if len(onlyleter1) == 1:
-                print("only letter1 = 1 work")
                 if len(onlyNumber1) == 1 or onlyNumber1 == "10":
-                    print("only number1 in 1-10 work")
                     if kleineBootlocatie not in kleineBootlocatieSavePlayer1 and kleineBootlocatie not in kleineBootlocatieSavePlayer2:
-                        print("kleinbootlocatie not in kleinbootlocatiesave work")
                         print(bootcountklein)
                         kleineBootlocatieSavePlayer1.append(kleineBootlocatie)
                         print (kleineBootlocatieSavePlayer1)
                         if bootcountklein == 1:
-                            print("1 work pleas")
                             kleineBootlocatieSave1Player1.append(kleineBootlocatie)
                         elif bootcountklein == 2:
                             if kleineBootlocatie == kleineBootlocatieSave1Player1[0]:
-                                print("zorg ervoor dat de booten niet op elkaarstaan")
                                 kleineBootlocatieSavePlayer1.clear()
                                 continue
                             else:
                                 kleineBootlocatieSave2Player1.append(kleineBootlocatie)
                         elif bootcountklein == 3:
                             if kleineBootlocatie == kleineBootlocatieSave1Player1[0] or kleineBootlocatie == kleineBootlocatieSave2Player1[0]:
-                                print("zorg ervoor dat de booten niet op elkaarstaan")
                                 kleineBootlocatieSavePlayer1.clear()
                                 continue
                             else:
                                 kleineBootlocatieSave3Player1.append(kleineBootlocatie)
                         elif bootcountklein == 4:
                             if kleineBootlocatie == kleineBootlocatieSave1Player1[0] or kleineBootlocatie == kleineBootlocatieSave2Player1[0] or kleineBootlocatie == kleineBootlocatieSave3Player1[0]:
-                                print("zorg ervoor dat de booten niet op elkaarstaan")
                                 kleineBootlocatieSavePlayer1.clear()
                                 continue
                             else:
                                 kleineBootlocatieSave4Player1.append(kleineBootlocatie)
                     else:
                         kleineBootlocatieSavePlayer1.clear()
-                        print("zorg er voor dat je niet 2 keer de zelfde cordinaten gebruikt<3")
                         continue
 
 #=============================================================tweedeCord================================================================#
@@ -121,14 +130,11 @@ def kleineBootlocatieVraag(bootcountklein):
                             if len(onlyNumber2) == 1 or onlyNumber2 == "10":
                                 if onlyleter1 == onlyleter2:
                                     if int(onlyNumber2) == int(onlyNumber1) + 1 or int(onlyNumber2) == int(onlyNumber1) - 1:
-
                                         if kleineBootlocatie not in kleineBootlocatieSavePlayer1 and kleineBootlocatie not in kleineBootlocatieSavePlayer2:
                                             kleineBootlocatieSavePlayer1.append(kleineBootlocatie)
                                             print (kleineBootlocatieSavePlayer1)
-            
                                             if  abc.index(onlyleter2) == abc.index(onlyleter1) + 1 or abc.index(onlyleter2) == abc.index(onlyleter1) - 1 or abc.index(onlyleter2) == abc.index(onlyleter1):
                                                 if bootcountklein == 1:
-                                                    print("1 work pleas")
                                                     kleineBootlocatieSave1Player1.append(kleineBootlocatie)
                                                 elif bootcountklein == 2:
                                                         if kleineBootlocatie == kleineBootlocatieSave1Player1[0] or kleineBootlocatie == kleineBootlocatieSave1Player1[1]:
@@ -233,13 +239,7 @@ def kleinebootshipPlaatser():#intenet moet nog eens doorlezen!!!
         # Update the corresponding cell with 'O'
         globals()[row + str(col)] = 'O'
 
-def printi():
-    print(kleineBootlocatieSave1Player1)
-    print(kleineBootlocatieSave2Player1)
-    print(kleineBootlocatieSave3Player1)
-    print(kleineBootlocatieSave4Player1)
-
-def kleinebootshipPlaatser():#intenet moet nog eens doorlezen!!!
+def shipPlaatser():#intenet moet nog eens doorlezen!!!
     global kleineBootlocatieSavePlayer1
     for coord in kleineBootlocatieSavePlayer1:
         row = coord[0]  # Extract the row letter
@@ -252,25 +252,195 @@ def start1player():
     board()
     kleineBootlocatieVraag(1)
     kleinebootshipPlaatser()
-    printi()
     kleineBootlocatieVraagTrue = True
     board()
     kleineBootlocatieVraag(2)
     kleinebootshipPlaatser()
-    printi()
     kleineBootlocatieVraagTrue = True
     board()
     kleineBootlocatieVraag(3)
     kleinebootshipPlaatser()
-    printi()
     kleineBootlocatieVraagTrue = True
     kleineBootlocatieVraag(4)
     kleinebootshipPlaatser()
     board()
-    printi()
-        
+
+#=============================================================boot3groot===============================================================#
+def drieBootlocatieVraag(bootcountdrie):
+    global abc, drieBootlocatieVraagTrue, middelDrie, middelDrieLetter
+    while drieBootlocatieVraagTrue is True:
+        drieBootlocatieSavePlayer1.clear()
+        print("plaats drie boot", bootcountdrie ,"drie vakjes dus")
+
+#=============================================================eersteCord===============================================================#
+        drieBootlocatie1 = input("geeft cord 1: ")
+        onlyleter1 = re.sub("[^a-zA-Z]", "", drieBootlocatie1)
+        onlyNumber1 = re.sub("[^1-2-3-5-6-7-8-9-10]", "", drieBootlocatie1)
+        if onlyleter1 in abc:
+            if len(onlyleter1) == 1:
+                if len(onlyNumber1) == 1 or onlyNumber1 == "10":
+                    if drieBootlocatie1 not in kleineBootlocatieSavePlayer1 and drieBootlocatie1 not in kleineBootlocatieSavePlayer2:
+                        drieBootlocatieSavePlayer1.append(drieBootlocatie1)
+
+                        if bootcountdrie == 1:
+                            drieBootlocatieSave1Player1.append(drieBootlocatie1)
+                        elif bootcountdrie == 2:
+                            if drieBootlocatie == drieBootlocatieSave1Player1[0]:
+                                kleineBootlocatieSavePlayer1.clear()
+                                continue
+                            else:
+                                kleineBootlocatieSave2Player1.append(drieBootlocatie1)
+                        elif bootcountdrie == 3:
+                            if drieBootlocatie1 == drieBootlocatieSave1Player1[0] or drieBootlocatie1 == drieBootlocatieSave2Player1[0]:
+                                drieBootlocatieSavePlayer1.clear()
+                                continue
+                            else:
+                                kleineBootlocatieSave3Player1.append(drieBootlocatie1)
+                        elif bootcountdrie == 4:
+                            if drieBootlocatie1 == drieBootlocatieSave1Player1[0] or drieBootlocatie1 == drieBootlocatieSave2Player1[0] or drieBootlocatie1 == drieBootlocatieSave3Player1[0]:
+                                drieBootlocatieSavePlayer1.clear()
+                                continue
+                            else:
+                                drieBootlocatieSave4Player1.append(drieBootlocatie1)
+                    else:
+                        
+                        print("zorg er voor dat je niet 2 keer de zelfde cordinaten gebruikt<3")
+                        continue
+#=============================================================tweedeCord===============================================================#
+                    drieBootlocatie = input("geeft cord 2: ")
+                    onlyleter2 = re.sub("[^a-zA-Z]", "", drieBootlocatie)
+                    onlyNumber2 = re.sub("[^1-2-3-5-6-7-8-9-10]", "", drieBootlocatie)
+                    if onlyleter2 in abc:
+                        if len(onlyleter2) == 1:
+                            if len(onlyNumber2) == 1 or onlyNumber2 == "10":
+                                if onlyleter1 == onlyleter2:
+                                    if int(onlyNumber2) == int(onlyNumber1) + 2 or int(onlyNumber2) == int(onlyNumber1) - 2:
+                                        if drieBootlocatie not in drieBootlocatieSavePlayer1 and drieBootlocatie not in drieBootlocatieSavePlayer2 and drieBootlocatie not in kleineBootlocatieSavePlayer1 and drieBootlocatie not in kleineBootlocatieSavePlayer2:
+                                            drieBootlocatieSavePlayer1.append(drieBootlocatie)
+                                            print (drieBootlocatieSavePlayer1)
+                                            if  abc.index(onlyleter2) == abc.index(onlyleter1) + 2 or abc.index(onlyleter2) == abc.index(onlyleter1) - 2 or abc.index(onlyleter2) == abc.index(onlyleter1):
+                                                if bootcountdrie == 1:
+                                                    print(drieBootlocatie1)
+                                                    drieBootlocatieSave1Player1.append(drieBootlocatie)
+                                                    kleineBootlocatieSavePlayer1.append(drieBootlocatie1)
+                                                elif bootcountdrie == 2:
+                                                        if drieBootlocatie == drieBootlocatieSave1Player1[0] or drieBootlocatie == drieBootlocatieSave1Player1[1]:
+                                                            print("zorg ervoor dat de booten niet op elkaarstaan")
+                                                            drieBootlocatieSavePlayer1.clear()
+                                                            continue
+                                                        else:
+                                                            drieBootlocatieSave2Player1.append(drieBootlocatie)
+                                                elif bootcountdrie == 3:
+                                                    if drieBootlocatie == drieBootlocatieSave1Player1[0] or drieBootlocatie == drieBootlocatieSave2Player1[0] or drieBootlocatie == drieBootlocatieSave1Player1[1] or drieBootlocatie == drieBootlocatieSave2Player1[1]:
+                                                        print("zorg ervoor dat de booten niet op elkaarstaan")
+                                                        drieBootlocatieSavePlayer1.clear()
+                                                        continue
+                                                    else:
+                                                        drieBootlocatieSave3Player1.append(drieBootlocatie)
+                                                elif bootcountdrie == 4:
+                                                    if drieBootlocatie == drieBootlocatieSave1Player1[0] or drieBootlocatie == drieBootlocatieSave2Player1[0] or drieBootlocatie == drieBootlocatieSave3Player1[0] or drieBootlocatie == drieBootlocatieSave1Player1[1] or drieBootlocatie == drieBootlocatieSave2Player1[1] or drieBootlocatie == drieBootlocatieSave3Player1[1]:
+                                                        print("zorg ervoor dat de booten niet op elkaarstaan")
+                                                        drieBootlocatieSavePlayer1.clear()
+                                                        continue
+                                                    else:
+                                                        drieBootlocatieSave4Player1.append(drieBootlocatie)
+
+                                                drieBootlocatieSavePlayer1.append(drieBootlocatie)
+                                                middelDrieNumber = int(onlyNumber2) - 1
+                                                index = abc.index(onlyleter2)  # Get the index of onlyleter2 in the abc list
+                                                preceding_letter = abc[index]  # Get the preceding letter
+                                                middelDrie = preceding_letter + str(middelDrieNumber)
+                                                drieBootlocatieSavePlayer1.append(middelDrie)
+                                                drieBootlocatieVraagTrue = False
+                                        else:
+                                            drieBootlocatieSavePlayer1.clear()
+                                            print("zorg er voor dat je niet 2 keer de zelfde cordinaten gebruikt<3")
+                                            continue
+                                    else:
+                                        drieBootlocatieSavePlayer1.clear()
+                                        print("zorg er voor dat je niet 2 keer de zelfde cordinaten gebruikt<3")
+                                        continue
+                                else:
+                                    if int(onlyNumber2) == int(onlyNumber1):
+                                        if drieBootlocatie not in drieBootlocatieSavePlayer1 and drieBootlocatie not in drieBootlocatieSavePlayer2:
+                                            drieBootlocatieSavePlayer1.append(drieBootlocatie)
+                                            print (drieBootlocatieSavePlayer1)
+            
+                                            if  abc.index(onlyleter2) == abc.index(onlyleter1) + 2 or abc.index(onlyleter2) == abc.index(onlyleter1) - 2 or abc.index(onlyleter2) == abc.index(onlyleter1):
+                                                if bootcountdrie == 1:
+                                                    print("1 work pleas")
+                                                    drieBootlocatieSave1Player1.append(drieBootlocatie)
+                                                elif bootcountdrie == 2:
+                                                        if drieBootlocatie == drieBootlocatieSave1Player1[0] or drieBootlocatie == drieBootlocatieSave1Player1[1]:
+                                                            print("zorg ervoor dat de booten niet op elkaarstaan")
+                                                            drieBootlocatieSavePlayer1.clear()
+                                                            continue
+                                                        else:
+                                                            drieBootlocatieSave2Player1.append(drieBootlocatie)
+                                                elif bootcountdrie == 3:
+                                                    if drieBootlocatie == drieBootlocatieSave1Player1[0] or drieBootlocatie == drieBootlocatieSave2Player1[0] or drieBootlocatie == drieBootlocatieSave1Player1[1] or drieBootlocatie == drieBootlocatieSave2Player1[1]:
+                                                        print("zorg ervoor dat de booten niet op elkaarstaan")
+                                                        drieBootlocatieSavePlayer1.clear()
+                                                        continue
+                                                    else:
+                                                        drieBootlocatieSave3Player1.append(drieBootlocatie)
+                                                elif bootcountdrie == 4:
+                                                    if drieBootlocatie == drieBootlocatieSave1Player1[0] or drieBootlocatie == drieBootlocatieSave2Player1[0] or drieBootlocatie == drieBootlocatieSave3Player1[0] or drieBootlocatie == drieBootlocatieSave1Player1[1] or drieBootlocatie == drieBootlocatieSave2Player1[1] or drieBootlocatie == drieBootlocatieSave3Player1[1]:
+                                                        print("zorg ervoor dat de booten niet op elkaarstaan")
+                                                        drieBootlocatieSavePlayer1.clear()
+                                                        continue
+                                                    else:
+                                                        drieBootlocatieSave4Player1.append(drieBootlocatie)
+
+                                                drieBootlocatieSavePlayer1.append(drieBootlocatie)
+                                                middelDrieNumber = int(onlyNumber2) 
+                                                index = abc.index(onlyleter2)  
+                                                preceding_letter = abc[index - 1] 
+                                                middelDrie = preceding_letter + str(middelDrieNumber)
+                                                drieBootlocatieSavePlayer1.append(middelDrie)
+                                                drieBootlocatieVraagTrue = False
+                                        else:
+                                            drieBootlocatieSavePlayer1.clear()
+                                            print("zorg er voor dat je niet 2 keer de zelfde cordinaten gebruikt<3")
+                                            continue
+                                    else:
+                                        drieBootlocatieSavePlayer1.clear()
+                                        print("je kan niet schuin plaatsen")
+                                        continue
+                            else:
+                                drieBootlocatieSavePlayer1.clear()
+                                print("zorg dat de y waarde binne de nummer past")
+                                continue
+                        else:
+                            drieBootlocatieSavePlayer1.clear()
+                            print("zorg dat je maar 1 letter hebt staan")
+                            continue
+                    else:
+                        drieBootlocatieSavePlayer1.clear()
+                        print("zorg dat de x waarde binne de leters past")
+                        continue
+                else:
+                    drieBootlocatieSavePlayer1.clear()
+                    print("zorg dat de y waarde binne de leters past")
+                    continue
+            else:
+                drieBootlocatieSavePlayer1.clear()
+                print("zorg dat je maar 1 letter hebt staan")
+                continue
+        else:
+            drieBootlocatieSavePlayer1.clear()
+            print("zorg dat de x waarde binne de leters past")
+            continue
+
+
+
 #=============================================================program==================================================================#
 player_select()
 
 if player2 == False:
-    start1player()
+    board()
+    kleineBootlocatieVraag(1)
+    shipPlaatser()
+    board()
+    drieBootlocatieVraag(1)
+    kleinebootshipPlaatser()
