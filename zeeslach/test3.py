@@ -25,8 +25,6 @@ kleineBootlocatieSave1Player1 = []
 kleineBootlocatieSave2Player1 = []
 kleineBootlocatieSave3Player1 = []
 kleineBootlocatieSave4Player1 = []
-<<<<<<< HEAD
-=======
 
 
 drieBootlocatieSavePlayer1 = []
@@ -66,7 +64,6 @@ all_lists = [kleineBootlocatieSavePlayer1, kleineBootlocatieSavePlayer2, kleineB
              vierBootlocatieSave2Player1, vierBootlocatieSave3Player1, vierBootlocatieSave4Player1, 
              zesBootlocatieSavePlayer1, zesBootlocatieSavePlayer2, zesBootlocatieSave1Player1,
              zesBootlocatieSave2Player1, zesBootlocatieSave3Player1, zesBootlocatieSave4Player1]
->>>>>>> 0659d6590b02a1bc0726032aaf3d739afc0c8903
 
 #=============================================================functions=================================================================#
 def board():
@@ -103,11 +100,7 @@ def player_select():
 
 #=============================================================kleindeboot===============================================================#
 def kleineBootlocatieVraag(bootcountklein):
-<<<<<<< HEAD
-    global abc, kleineBootlocatieVraagTrue
-=======
     global abc, kleineBootlocatieVraagTrue, kleineBootlocatieSavePlayer1
->>>>>>> 0659d6590b02a1bc0726032aaf3d739afc0c8903
     while kleineBootlocatieVraagTrue is True:
         kleineBootlocatieSavePlayer1.clear()
         print("plaats kleine boot", bootcountklein ,"twee vakjes dus")
@@ -117,45 +110,8 @@ def kleineBootlocatieVraag(bootcountklein):
         onlyleter1 = re.sub("[^a-zA-Z]", "", kleineBootlocatie)
         onlyNumber1 = re.sub("[^1-2-3-5-6-7-8-9-10]", "", kleineBootlocatie)
         if onlyleter1 in abc:
-<<<<<<< HEAD
-            print("only letter1 in  abc work")
-=======
->>>>>>> 0659d6590b02a1bc0726032aaf3d739afc0c8903
             if len(onlyleter1) == 1:
-                print("only letter1 = 1 work")
                 if len(onlyNumber1) == 1 or onlyNumber1 == "10":
-<<<<<<< HEAD
-                    print("only number1 in 1-10 work")
-                    if kleineBootlocatie not in kleineBootlocatieSavePlayer1 and kleineBootlocatie not in kleineBootlocatieSavePlayer2:
-                        print("kleinbootlocatie not in kleinbootlocatiesave work")
-                        print(bootcountklein)
-                        kleineBootlocatieSavePlayer1.append(kleineBootlocatie)
-                        print (kleineBootlocatieSavePlayer1)
-                        if bootcountklein == 1:
-                            print("1 work pleas")
-                            kleineBootlocatieSave1Player1.append(kleineBootlocatie)
-                        elif bootcountklein == 2:
-                            if kleineBootlocatie == kleineBootlocatieSave1Player1[0]:
-                                print("zorg ervoor dat de booten niet op elkaarstaan")
-                                kleineBootlocatieSavePlayer1.clear()
-                                continue
-                            else:
-                                kleineBootlocatieSave2Player1.append(kleineBootlocatie)
-                        elif bootcountklein == 3:
-                            if kleineBootlocatie == kleineBootlocatieSave1Player1[0] or kleineBootlocatie == kleineBootlocatieSave2Player1[0]:
-                                print("zorg ervoor dat de booten niet op elkaarstaan")
-                                kleineBootlocatieSavePlayer1.clear()
-                                continue
-                            else:
-                                kleineBootlocatieSave3Player1.append(kleineBootlocatie)
-                        elif bootcountklein == 4:
-                            if kleineBootlocatie == kleineBootlocatieSave1Player1[0] or kleineBootlocatie == kleineBootlocatieSave2Player1[0] or kleineBootlocatie == kleineBootlocatieSave3Player1[0]:
-                                print("zorg ervoor dat de booten niet op elkaarstaan")
-                                kleineBootlocatieSavePlayer1.clear()
-                                continue
-                            else:
-                                kleineBootlocatieSave4Player1.append(kleineBootlocatie)
-=======
                     if kleineBootlocatie1 not in kleineBootlocatieSavePlayer1 or kleineBootlocatie1 not in kleineBootlocatieSavePlayer2:
                         print(bootcountklein)
                         kleineBootlocatieSavePlayer1.append(kleineBootlocatie1)
@@ -177,7 +133,6 @@ def kleineBootlocatieVraag(bootcountklein):
                                 continue
                             else:
                                 kleineBootlocatieSave4Player1.append(kleineBootlocatie1)
->>>>>>> 0659d6590b02a1bc0726032aaf3d739afc0c8903
                     else:
                         kleineBootlocatieSavePlayer1.clear()
                         continue
@@ -195,43 +150,26 @@ def kleineBootlocatieVraag(bootcountklein):
                                             kleineBootlocatieSavePlayer1.append(kleineBootlocatie)
                                             if  abc.index(onlyleter2) == abc.index(onlyleter1) + 1 or abc.index(onlyleter2) == abc.index(onlyleter1) - 1 or abc.index(onlyleter2) == abc.index(onlyleter1):
                                                 if bootcountklein == 1:
-<<<<<<< HEAD
-                                                    print("1 work pleas")
-                                                    kleineBootlocatieSave1Player1.append(kleineBootlocatie)
-                                                elif bootcountklein == 2:
-                                                        if kleineBootlocatie == kleineBootlocatieSave1Player1[0] or kleineBootlocatie == kleineBootlocatieSave1Player1[1]:
-                                                            print("zorg ervoor dat de booten niet op elkaarstaan")
-                                                            kleineBootlocatieSavePlayer1.clear()
-=======
                                                     kleineBootlocatieSave1Player1.append(kleineBootlocatie)
                                                 elif bootcountklein == 2:
                                                         print(kleineBootlocatieSavePlayer1)
                                                         if kleineBootlocatie == kleineBootlocatieSave1Player1[0] or kleineBootlocatie == kleineBootlocatieSave1Player1[1]:
                                                             kleineBootlocatieSavePlayer1.remove(kleineBootlocatie)
                                                             print("zorg ervoor dat de booten niet op elkaarstaan")
->>>>>>> 0659d6590b02a1bc0726032aaf3d739afc0c8903
                                                             continue
                                                         else:
                                                             kleineBootlocatieSave2Player1.append(kleineBootlocatie)
                                                 elif bootcountklein == 3:
                                                     if kleineBootlocatie == kleineBootlocatieSave1Player1[0] or kleineBootlocatie == kleineBootlocatieSave2Player1[0] or kleineBootlocatie == kleineBootlocatieSave1Player1[1] or kleineBootlocatie == kleineBootlocatieSave2Player1[1]:
                                                         print("zorg ervoor dat de booten niet op elkaarstaan")
-<<<<<<< HEAD
-                                                        kleineBootlocatieSavePlayer1.clear()
-=======
                                                         kleineBootlocatieSave1Player1.append(kleineBootlocatie)
->>>>>>> 0659d6590b02a1bc0726032aaf3d739afc0c8903
                                                         continue
                                                     else:
                                                         kleineBootlocatieSave3Player1.append(kleineBootlocatie)
                                                 elif bootcountklein == 4:
                                                     if kleineBootlocatie == kleineBootlocatieSave1Player1[0] or kleineBootlocatie == kleineBootlocatieSave2Player1[0] or kleineBootlocatie == kleineBootlocatieSave3Player1[0] or kleineBootlocatie == kleineBootlocatieSave1Player1[1] or kleineBootlocatie == kleineBootlocatieSave2Player1[1] or kleineBootlocatie == kleineBootlocatieSave3Player1[1]:
                                                         print("zorg ervoor dat de booten niet op elkaarstaan")
-<<<<<<< HEAD
-                                                        kleineBootlocatieSavePlayer1.clear()
-=======
                                                         kleineBootlocatieSave1Player1.append(kleineBootlocatie)
->>>>>>> 0659d6590b02a1bc0726032aaf3d739afc0c8903
                                                         continue
                                                     else:
                                                         kleineBootlocatieSave4Player1.append(kleineBootlocatie)
@@ -317,44 +255,6 @@ def kleinebootshipPlaatser():#intenet moet nog eens doorlezen!!!
         # Update the corresponding cell with 'O'
         globals()[row + str(col)] = 'O'
 
-<<<<<<< HEAD
-def printi():
-    print(kleineBootlocatieSave1Player1)
-    print(kleineBootlocatieSave2Player1)
-    print(kleineBootlocatieSave3Player1)
-    print(kleineBootlocatieSave4Player1)
-
-def kleinebootshipPlaatser():#intenet moet nog eens doorlezen!!!
-    global kleineBootlocatieSavePlayer1
-    for coord in kleineBootlocatieSavePlayer1:
-        row = coord[0]  # Extract the row letter
-        col = int(coord[1:])  # Extract the column number
-        # Update the corresponding cell with 'O'
-        globals()[row + str(col)] = 'O'
-
-def start():
-    global kleineBootlocatieVraagTrue
-    board()
-    kleineBootlocatieVraag(1)
-    kleinebootshipPlaatser()
-    printi()
-    kleineBootlocatieVraagTrue = True
-    board()
-    kleineBootlocatieVraag(2)
-    kleinebootshipPlaatser()
-    printi()
-    kleineBootlocatieVraagTrue = True
-    board()
-    kleineBootlocatieVraag(3)
-    kleinebootshipPlaatser()
-    printi()
-    kleineBootlocatieVraagTrue = True
-    kleineBootlocatieVraag(4)
-    kleinebootshipPlaatser()
-    board()
-    printi()
-        
-=======
 def shipPlaatser(shipCords):#intenet moet nog eens doorlezen!!!
     for coord in shipCords:
         row = coord[0]  # Extract the row letter
@@ -942,16 +842,11 @@ def zesBootlocatieVraag(bootcountzes):
             print("zorg dat de x waarde binne de leters past")
             continue
 
->>>>>>> 0659d6590b02a1bc0726032aaf3d739afc0c8903
 #=============================================================program==================================================================#
 player_select()
 
 if player2 == False:
-<<<<<<< HEAD
-    start()
-=======
     start1player()
     boot3Player1()
     boot4Player1()
     boot6Players()
->>>>>>> 0659d6590b02a1bc0726032aaf3d739afc0c8903
