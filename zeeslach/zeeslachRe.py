@@ -22,6 +22,8 @@ j1, j2, j3, j4, j5, j6, j7, j8, j9, j10 = [" "]*10
 abc = ["a","b","c","d","e","f","g","h","i","j"]
 oneTwoThree = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
+winner = False
+
 bootSavePlayer1 = []
 bootSavePlayer2 = []
 
@@ -65,8 +67,46 @@ boot6Save2Player2 = []
 boot6Save3Player2 = []
 boot6Save4Player2 = []
 
+listOfAllPlayer1 = [
+    boot2Save1Player1, boot2Save2Player1, boot2Save3Player1, boot2Save4Player1,
+    boot3Save1Player1, boot3Save2Player1, boot3Save3Player1, boot3Save4Player1,
+    boot4Save1Player1, boot4Save2Player1, boot4Save3Player1, boot4Save4Player1,
+    boot6Save1Player1, boot6Save2Player1, boot6Save3Player1, boot6Save4Player1,
+]
+
+listOfAllPlayer2 = [
+    boot2Save1Player2, boot2Save2Player2, boot2Save3Player2, boot2Save4Player2,
+    boot3Save1Player2, boot3Save2Player2, boot3Save3Player2, boot3Save4Player2,
+    boot4Save1Player2, boot4Save2Player2, boot4Save3Player2, boot4Save4Player2,
+    boot6Save1Player2, boot6Save2Player2, boot6Save3Player2, boot6Save4Player2
+]
+
 #=============================================================functions================================================================#
 def board():
+    print("  ","1","|","2","|","3","|","4","|","5","|","6","|","7","|","8","|","9","|","10")
+    print("-"*42)
+    print("A|",a1,"|",a2,"|",a3,"|",a4,"|",a5,"|",a6,"|",a7,"|",a8,"|",a9,"|",a10)
+    print("-"*42)
+    print("B|",b1,"|",b2,"|",b3,"|",b4,"|",b5,"|",b6,"|",b7,"|",b8,"|",b9,"|",b10)
+    print("-"*42)
+    print("C|",c1,"|",c2,"|",c3,"|",c4,"|",c5,"|",c6,"|",c7,"|",c8,"|",c9,"|",c10)
+    print("-"*42)
+    print("D|",d1,"|",d2,"|",d3,"|",d4,"|",d5,"|",d6,"|",d7,"|",d8,"|",d9,"|",d10)
+    print("-"*42)
+    print("E|",e1,"|",e2,"|",e3,"|",e4,"|",e5,"|",e6,"|",e7,"|",e8,"|",e9,"|",e10)
+    print("-"*42)
+    print("F|",f1,"|",f2,"|",f3,"|",f4,"|",f5,"|",f6,"|",f7,"|",f8,"|",f9,"|",f10)
+    print("-"*42)
+    print("G|",g1,"|",g2,"|",g3,"|",g4,"|",g5,"|",g6,"|",g7,"|",g8,"|",g9,"|",g10)
+    print("-"*42)
+    print("H|",h1,"|",h2,"|",h3,"|",h4,"|",h5,"|",h6,"|",h7,"|",h8,"|",h9,"|",h10)
+    print("-"*42)
+    print("I|",i1,"|",i2,"|",i3,"|",i4,"|",i5,"|",i6,"|",i7,"|",i8,"|",i9,"|",i10)
+    print("-"*42)
+    print("J|",j1,"|",j2,"|",j3,"|",j4,"|",j5,"|",j6,"|",j7,"|",j8,"|",j9,"|",j10)
+    print("-"*42)
+
+def hitboard():
     print("  ","1","|","2","|","3","|","4","|","5","|","6","|","7","|","8","|","9","|","10")
     print("-"*42)
     print("A|",a1,"|",a2,"|",a3,"|",a4,"|",a5,"|",a6,"|",a7,"|",a8,"|",a9,"|",a10)
@@ -641,29 +681,29 @@ def chooseMap():# schrijf opnieuwe
     global boot6Save1Player2,boot6Save2Player2,boot6Save3Player2,boot6Save4Player2 
     if map_number == 1:
         boot2Save1Player2 = map1.boot2Save1Player2, boot2Save2Player2 = map1.boot2Save2Player2, boot2Save3Player2 = map1.boot2Save3Player2, boot2Save4Player2 = map1.boot2Save4Player2
-        boot3Save1Player2 = map1.boot3Save1Player2, boot3Save2Player2 = map1.boot3Save2Player2, boot3Save3Player2 = map1.boot3Save3Player2, boot3Save4Player2 = map1.boot3Save4Player2
-        boot4Save1Player2 = map1.boot4Save1Player2, boot4Save2Player2 = map1.boot4Save2Player2, boot4Save3Player2 = map1.boot4Save3Player2, boot4Save4Player2 = map1.boot4Save4Player2
-        boot6Save1Player2 = map1.boot6Save1Player2, boot6Save2Player2 = map1.boot6Save2Player2, boot6Save3Player2 = map1.boot6Save3Player2, boot6Save4Player2 = map1.boot6Save4Player2
+        boot3Save1Player2 = map1.boot3Save1Player2, boot3Save2Player2 = map1.boot3Save2Player2, boot3Save3Player2 = map1.boot3Save3Player2
+        boot4Save1Player2 = map1.boot4Save1Player2, boot4Save2Player2 = map1.boot4Save2Player2
+        boot6Save1Player2 = map1.boot6Save1Player2
     if map_number == 2:
         boot2Save1Player2 = map2.boot2Save1Player2, boot2Save2Player2 = map2.boot2Save2Player2, boot2Save3Player2 = map2.boot2Save3Player2, boot2Save4Player2 = map2.boot2Save4Player2
-        boot3Save1Player2 = map2.boot3Save1Player2, boot3Save2Player2 = map2.boot3Save2Player2, boot3Save3Player2 = map2.boot3Save3Player2, boot3Save4Player2 = map2.boot3Save4Player2
-        boot4Save1Player2 = map2.boot4Save1Player2, boot4Save2Player2 = map2.boot4Save2Player2, boot4Save3Player2 = map2.boot4Save3Player2, boot4Save4Player2 = map2.boot4Save4Player2
-        boot6Save1Player2 = map2.boot6Save1Player2, boot6Save2Player2 = map2.boot6Save2Player2, boot6Save3Player2 = map2.boot6Save3Player2, boot6Save4Player2 = map2.boot6Save4Player2
+        boot3Save1Player2 = map2.boot3Save1Player2, boot3Save2Player2 = map2.boot3Save2Player2, boot3Save3Player2 = map2.boot3Save3Player2
+        boot4Save1Player2 = map2.boot4Save1Player2, boot4Save2Player2 = map2.boot4Save2Player2
+        boot6Save1Player2 = map2.boot6Save1Player2
     if map_number == 3:
         boot2Save1Player2 = map3.boot2Save1Player2, boot2Save2Player2 = map3.boot2Save2Player2, boot2Save3Player2 = map3.boot2Save3Player2, boot2Save4Player2 = map3.boot2Save4Player2
-        boot3Save1Player2 = map3.boot3Save1Player2, boot3Save2Player2 = map3.boot3Save2Player2, boot3Save3Player2 = map3.boot3Save3Player2, boot3Save4Player2 = map3.boot3Save4Player2
-        boot4Save1Player2 = map3.boot4Save1Player2, boot4Save2Player2 = map3.boot4Save2Player2, boot4Save3Player2 = map3.boot4Save3Player2, boot4Save4Player2 = map3.boot4Save4Player2
-        boot6Save1Player2 = map3.boot6Save1Player2, boot6Save2Player2 = map3.boot6Save2Player2, boot6Save3Player2 = map3.boot6Save3Player2, boot6Save4Player2 = map3.boot6Save4Player2
+        boot3Save1Player2 = map3.boot3Save1Player2, boot3Save2Player2 = map3.boot3Save2Player2, boot3Save3Player2 = map3.boot3Save3Player2
+        boot4Save1Player2 = map3.boot4Save1Player2, boot4Save2Player2 = map3.boot4Save2Player2
+        boot6Save1Player2 = map3.boot6Save1Player2
     if map_number == 4:
         boot2Save1Player2 = map4.boot2Save1Player2, boot2Save2Player2 = map4.boot2Save2Player2, boot2Save3Player2 = map4.boot2Save3Player2, boot2Save4Player2 = map4.boot2Save4Player2
-        boot3Save1Player2 = map4.boot3Save1Player2, boot3Save2Player2 = map4.boot3Save2Player2, boot3Save3Player2 = map4.boot3Save3Player2, boot3Save4Player2 = map4.boot3Save4Player2
-        boot4Save1Player2 = map4.boot4Save1Player2, boot4Save2Player2 = map4.boot4Save2Player2, boot4Save3Player2 = map4.boot4Save3Player2, boot4Save4Player2 = map4.boot4Save4Player2
-        boot6Save1Player2 = map4.boot6Save1Player2, boot6Save2Player2 = map4.boot6Save2Player2, boot6Save3Player2 = map4.boot6Save3Player2, boot6Save4Player2 = map4.boot6Save4Player2
+        boot3Save1Player2 = map4.boot3Save1Player2, boot3Save2Player2 = map4.boot3Save2Player2, boot3Save3Player2 = map4.boot3Save3Player2
+        boot4Save1Player2 = map4.boot4Save1Player2, boot4Save2Player2 = map4.boot4Save2Player2
+        boot6Save1Player2 = map4.boot6Save1Player2
     if map_number == 5:
         boot2Save1Player2 = map5.boot2Save1Player2, boot2Save2Player2 = map5.boot2Save2Player2, boot2Save3Player2 = map5.boot2Save3Player2, boot2Save4Player2 = map5.boot2Save4Player2
-        boot3Save1Player2 = map5.boot3Save1Player2, boot3Save2Player2 = map5.boot3Save2Player2, boot3Save3Player2 = map5.boot3Save3Player2, boot3Save4Player2 = map5.boot3Save4Player2
-        boot4Save1Player2 = map5.boot4Save1Player2, boot4Save2Player2 = map5.boot4Save2Player2, boot4Save3Player2 = map5.boot4Save3Player2, boot4Save4Player2 = map5.boot4Save4Player2
-        boot6Save1Player2 = map5.boot6Save1Player2, boot6Save2Player2 = map5.boot6Save2Player2, boot6Save3Player2 = map5.boot6Save3Player2, boot6Save4Player2 = map5.boot6Save4Player2
+        boot3Save1Player2 = map5.boot3Save1Player2, boot3Save2Player2 = map5.boot3Save2Player2, boot3Save3Player2 = map5.boot3Save3Player2
+        boot4Save1Player2 = map5.boot4Save1Player2, boot4Save2Player2 = map5.boot4Save2Player2
+        boot6Save1Player2 = map5.boot6Save1Player2
       
 def shipPlaatser(shipCords):#intenet moet nog eens doorlezen!!!
     for coord in shipCords:
@@ -671,6 +711,27 @@ def shipPlaatser(shipCords):#intenet moet nog eens doorlezen!!!
         col = int(coord[1:])  # Extract the column number
         # Update the corresponding cell with 'O'
         globals()[row + str(col)] = 'O'
+
+def hitCeck(item, lists):#intenet help :( do understand fully 
+    miss = 0
+    for lst in lists:
+        if item in lst:
+            lst.remove(item)
+            print("you hit")
+        elif item not in lst:
+            miss = miss + 1
+    if miss == 3:
+        print("you mist")
+    return lists
+
+def shipSchooter(player):
+    global hitCeck
+    shootloc = input(f"player {player} shoot: ")
+    if player == 1:
+        print("pp")
+        hitCeck(shootloc,listOfAllPlayer2)
+    elif player == 2:
+        hitCeck(shootloc,listOfAllPlayer1)
 
 def start1player():
     board()
@@ -704,3 +765,24 @@ def start1player():
     boot6(1)
     shipPlaatser(boot6Save1Player1)
     board()
+
+def chooseMaptes():# schrijf opnieuwe
+    map_number = 1
+    global boot2Save1Player2,boot2Save2Player2,boot2Save3Player2,boot2Save4Player2
+    global boot3Save1Player2,boot3Save2Player2,boot3Save3Player2
+    global boot4Save1Player2,boot4Save2Player2
+    global boot6Save1Player2
+    if map_number == 1:
+        boot2Save1Player2 = map1.boot2Save1Player2
+        boot2Save2Player2 = map1.boot2Save2Player2
+        boot2Save3Player2 = map1.boot2Save3Player2
+        boot2Save4Player2 = map1.boot2Save4Player2
+        boot3Save1Player2 = map1.boot3Save1Player2
+        boot3Save2Player2 = map1.boot3Save2Player2
+        boot3Save3Player2 = map1.boot3Save3Player2
+        boot4Save1Player2 = map1.boot4Save1Player2
+        boot4Save2Player2 = map1.boot4Save2Player2
+        boot6Save1Player2 = map1.boot6Save1Player2
+
+chooseMaptes()
+shipSchooter(1)
